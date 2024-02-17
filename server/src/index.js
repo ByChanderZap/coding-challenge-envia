@@ -11,7 +11,7 @@ const io = new Server(server)
 
 let creationCount = 0
 
-app.use(morgan('dev'))
+app.use(morgan('common'))
 
 io.on('connection', (socket) => {
   socket.on('disconnect', () => {
@@ -25,6 +25,7 @@ app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 
 app.get('/', (req, res) => {
+  console.log('Request recieved')
   res.sendFile(process.cwd() + '/client/index.html')
 })
 
