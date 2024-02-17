@@ -16,10 +16,20 @@
           ${count}
         </p>`
 
-      count_element.insertAdjacentHTML('beforeend', item)
+      countElement.insertAdjacentHTML('beforeend', item)
     })
+
     socket.on('label-created', (creationCount) => {
-      count_element.innerHTML = creationCount
+      const counterText = document.getElementById('counter_text');
+      if (counterText) {
+        counterText.textContent = creationCount;
+      }
+
+      if (!countElement.querySelector('h2')) {
+        countElement.insertAdjacentHTML('afterbegin', '<h2>Shipments created:</h2>');
+      }
+
+      countElement.classList.add('counter_element');
     })
   </script>
 
@@ -44,71 +54,17 @@
       grid-template-rows: 1fr;
     }
 
-    /* #messages {
-      list-style-type: none;
-      margin: 0;
-      padding: 0;
-      overflow-y: scroll;
-      height: 100%;
-      scroll-behavior: smooth;
-      padding-bottom: 48px;
+    #counter_text {
+      font-size: 32px;
+      text-align: center;
     }
-
-    #messages>li {
-      padding: .5rem 1rem;
-    }
-
-    #messages>li:nth-child(odd) {
-      background: #000;
-    }
-
-    #chat {
-      border: 1px solid #ccc;
-      border-radius: 4px;
-      overflow: hidden;
-      width: 350px;
-      height: 100%;
-      position: relative;
-    }
-
-    #form {
-      bottom: 0;
-      display: flex;
-      height: 48px;
-      left: 0;
-      padding: 4px;
-      position: absolute;
-      right: 0;
-    }
-
-    #input {
-      border-radius: 9999px;
-      border: 1px solid #eee;
-      flex: 1;
-      margin: 4px;
-      padding: 0 8px;
-    }
-
-    #input:focus {
-      outline: 0;
-    }
-
-    #form>button {
-      background: #09f;
-      color: #fff;
-      border: 0;
-      margin: 4px;
-      border-radius: 4px;
-    }
-
-    #form>button:hover {
-      background: #0cf;
-    } */
   </style>
 </head>
 <body>
   <section id="count_element">
-
+    <h2>
+      Shipments created:
+    </h2>
   </section>
 </body>
 </html>
