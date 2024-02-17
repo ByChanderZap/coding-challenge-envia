@@ -17,7 +17,7 @@ npm start
 ```
 
 ## Local use
-- On home path (it should be http://localhost:<your-port>/ will be served the page with the counter of the labels created.
+- On home path (it should be http://localhost:YOUR-PORT/ will be served the page with the counter of the labels created.
 ### To create a new label:
 - POST request to: /shipments, in local it will be ttp://localhost:<your-port>/shipments
     - Example expected body:
