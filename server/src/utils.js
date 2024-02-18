@@ -1,7 +1,8 @@
+import mockBody from './mock-body.js'
 import axios from 'axios'
 import config from './config.js'
 
-export const makeRequest = async (body) => {
+export const makeRequest = async (payload) => {
   const reqConfig = {
     method: 'post',
     url: `${config.BASE_URL}/ship/generate/`,
@@ -9,7 +10,7 @@ export const makeRequest = async (body) => {
       'Content-Type': 'application/json',
       Authorization: `Bearer ${config.API_KEY}`
     },
-    data: body
+    data: Object.keys(payload).length === 0 ? mockBody : payload
   }
   return await axios(reqConfig)
 }
